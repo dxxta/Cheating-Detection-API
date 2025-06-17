@@ -1,0 +1,56 @@
+body {
+  font-family:
+    'Plus Jakarta Sans',
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Open Sans',
+    'Helvetica Neue',
+    sans-serif !important;
+  scrollbar-width: thin !important;
+  padding: 0;
+  margin: 0;
+}
+
+.n-h {
+  line-height: 1.5 !important;
+  margin: 0 !important;
+}
+
+.swagger-dark {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+
+.swagger-dark p,
+.swagger-dark span,
+.swagger-dark h1,
+.swagger-dark h2,
+.swagger-dark h3,
+.swagger-dark h4,
+.swagger-dark h5,
+.swagger-dark h6,
+.swagger-dark svg,
+.swagger-dark td,
+.swagger-dark th {
+  color: #ffffff !important;
+}
+.swagger-dark .opblock-summary-description {
+  color: #9f9f9f !important;
+}
+.swagger-dark .scheme-container {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+.swagger-dark .opblock-section-header {
+  background-color: #121212 !important;
+  color: #ffffff !important;
+}
+.swagger-dark button {
+  color: #ffffff !important;
+}
