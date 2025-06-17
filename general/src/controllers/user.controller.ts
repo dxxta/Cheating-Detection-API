@@ -211,8 +211,8 @@ export const userUpdate = async (
         data: {
           entityId: req.user!.id,
           entityName: 'user',
-          fieldName: JSON.stringify(Object.keys(req.body)),
-          fieldValue: JSON.stringify(req.body),
+          fieldName: JSON.stringify(Object.keys(user)),
+          fieldValue: JSON.stringify(user),
           userId: req.user!.id
         }
       })
@@ -257,20 +257,20 @@ export const userUpdateForAdmin = async (
       req.body
     )
     const updatedUser = await database.$transaction(async (ctx) => {
-      await ctx.audit.create({
-        data: {
-          entityId: req.body.id,
-          entityName: 'user',
-          fieldName: JSON.stringify(Object.keys(req.body)),
-          fieldValue: JSON.stringify(req.body),
-          userId: req.user!.id
-        }
-      })
-      return await ctx.user.update({
+      const update = await ctx.user.update({
         where: {
           id: req.body.id
         },
         data: { ...req.body, updatedDate: new Date() }
+      })
+      await ctx.audit.create({
+        data: {
+          entityName: 'user',
+          entityId: req.body.id,
+          fieldName: JSON.stringify(Object.keys(update)),
+          fieldValue: JSON.stringify(update),
+          userId: req.user!.id
+        }
       })
     })
     res.status(StatusCodes.CREATED).json({
