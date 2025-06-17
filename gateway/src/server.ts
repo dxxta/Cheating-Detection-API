@@ -44,6 +44,7 @@ const customProxyForwarder = (
 }
 
 export const Application = express()
+Application.use(cors())
 Application.use(checkAuthentication)
 // todo: proxy to watch service
 Application.use(
@@ -59,11 +60,6 @@ Application.use(
         proxyServer.on('proxyReq', customProxyForwarder)
       }
     ]
-  })
-)
-Application.use(
-  cors({
-    origin: '*'
   })
 )
 // todo: error handler

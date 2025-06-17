@@ -17,9 +17,9 @@ import { errorHandler, notFoundHandler } from '@middlewares/page.middleware'
 
 export const Application = express()
 logging.log('Logging & configuration')
+Application.use(corsHandler)
 Application.use(express.urlencoded({ extended: true }))
 Application.use(express.json())
-Application.use(corsHandler)
 Application.use(pagination(10))
 Application.use(loggingHandler)
 Application.use(

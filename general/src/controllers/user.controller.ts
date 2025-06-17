@@ -4,7 +4,7 @@ import { user } from '@xprisma/client'
 import { ROLE } from '@libs/constant.lib'
 import { isValidSchema } from '@libs/joi.lib'
 import { StatusCodes } from 'http-status-codes'
-import { BadRequestError } from '@libs/error.lib'
+import { BadRequestError, UnauthorizedError } from '@libs/error.lib'
 import { Request, Response, NextFunction } from 'express'
 import { generatePassword, validatePassword } from '@libs/hash.lib'
 import {
@@ -473,7 +473,7 @@ export const createAccessToken = async (
     )
     const foundRefreshTokenPayload = isRefreshTokenExist(req.body.token)
     if (!(foundRefreshTokenPayload as any)?.id) {
-      throw new BadRequestError('session invalid')
+      throw new UnauthorizedError('session invalid')
     }
     // todo: prevent bypass using access token
     const foundAuthenticationData = await database.authentication.findFirst({
@@ -485,7 +485,7 @@ export const createAccessToken = async (
       }
     })
     if (!foundAuthenticationData) {
-      throw new BadRequestError('please sign-in again')
+      throw new UnauthorizedError('please sign-in again')
     }
 
     const [accessToken, userAccessPayload] = await generateAccessToken({
