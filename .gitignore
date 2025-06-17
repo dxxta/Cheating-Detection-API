@@ -4,3 +4,4 @@ prisma_dist
 __pycache__
 node_modules
 docs
+.env*
