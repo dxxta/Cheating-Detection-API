@@ -415,9 +415,9 @@ export const getAudit = async (
   try {
     await isValidSchema(
       Joi.object({
-        entityId: Joi.string().uuid().optional(),
-        entityName: Joi.string().optional(),
-        isShowMine: Joi.boolean().optional().default(false)
+        entityId: Joi.string().uuid().required(),
+        entityName: Joi.string().optional()
+        // isShowMine: Joi.boolean().optional().default(false)
       }).prefs({ convert: true }),
       req.populatedQuery
     )
@@ -437,13 +437,16 @@ export const getAudit = async (
                 }
               ]
             }
-          : {}),
-        userId:
-          req.user?.roles?.includes(ROLE.Admin) &&
-          (req.populatedQuery?.isShowMine == 'false' ||
-            req.populatedQuery?.isShowMine == undefined)
-            ? ((req.populatedQuery?.userId as string) ?? undefined)
-            : req.user?.id
+          : {})
+        // userId:
+        //   req.user?.roles?.includes(ROLE.Admin) &&
+        //   (req.populatedQuery?.isShowMine == 'false' ||
+        //     req.populatedQuery?.isShowMine == undefined)
+        //     ? ((req.populatedQuery?.userId as string) ?? undefined)
+        //     : req.user?.id
+      },
+      include: {
+        user: true
       },
       skip: req.page,
       take: req.limit
