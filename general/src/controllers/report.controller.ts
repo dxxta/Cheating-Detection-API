@@ -95,7 +95,6 @@ export const createReport = async (
         //   .optional(),
         // live body
         streamId: Joi.string().uuid().required(),
-        // isPredictionEnabled: Joi.boolean().optional(),
         expiryTimeInMinutes: Joi.number().required()
       }).required(),
       req.body
@@ -129,10 +128,8 @@ export const createReport = async (
       const liveBody = {
         id: randomUUID(), //req.body.liveId,
         streamId: req.body.streamId
-        // isPredictionEnabled: req.body.isPredictionEnabled,
       }
       delete req.body.streamId
-      delete req.body.isPredictionEnabled
       delete req.body.items
       const report = await ctx.report.create({
         data: {

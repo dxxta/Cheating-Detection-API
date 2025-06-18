@@ -1,15 +1,15 @@
 model live {
     id                  String    @id @default(uuid())
-    isPredictionEnabled Boolean   @default(false) // unused
     path                String
     streamId            String
     stream              stream    @relation(fields: [streamId], references: [id])
     userId              String
     user                user      @relation(fields: [userId], references: [id])
-    reportId            String?
-    report              report?   @relation(fields: [reportId], references: [id])
+    // reportId            String?
+    // report              report?   @relation(fields: [reportId], references: [id])
     expiryDate          DateTime?
     expiryTimeInMinutes Int?
     createdDate         DateTime  @default(now())
     updatedDate         DateTime?
+    report              report[]
 }

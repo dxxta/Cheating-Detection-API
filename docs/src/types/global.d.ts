@@ -37,7 +37,6 @@ declare global {
   }
   type liveDataType = {
     id: string
-    isPredictionEnabled: boolean
     path: string
     streamId: string
     stream?: streamDataType

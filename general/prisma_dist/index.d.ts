@@ -1611,17 +1611,46 @@ export namespace Prisma {
 
 
   /**
+   * Count Type LiveCountOutputType
+   */
+
+  export type LiveCountOutputType = {
+    report: number
+  }
+
+  export type LiveCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    report?: boolean | LiveCountOutputTypeCountReportArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * LiveCountOutputType without action
+   */
+  export type LiveCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the LiveCountOutputType
+     */
+    select?: LiveCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * LiveCountOutputType without action
+   */
+  export type LiveCountOutputTypeCountReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: reportWhereInput
+  }
+
+
+  /**
    * Count Type ReportCountOutputType
    */
 
   export type ReportCountOutputType = {
     reportItems: number
-    live: number
   }
 
   export type ReportCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     reportItems?: boolean | ReportCountOutputTypeCountReportItemsArgs
-    live?: boolean | ReportCountOutputTypeCountLiveArgs
   }
 
   // Custom InputTypes
@@ -1640,13 +1669,6 @@ export namespace Prisma {
    */
   export type ReportCountOutputTypeCountReportItemsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: reportItemsWhereInput
-  }
-
-  /**
-   * ReportCountOutputType without action
-   */
-  export type ReportCountOutputTypeCountLiveArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: liveWhereInput
   }
 
 
@@ -1783,11 +1805,9 @@ export namespace Prisma {
 
   export type LiveMinAggregateOutputType = {
     id: string | null
-    isPredictionEnabled: boolean | null
     path: string | null
     streamId: string | null
     userId: string | null
-    reportId: string | null
     expiryDate: Date | null
     expiryTimeInMinutes: number | null
     createdDate: Date | null
@@ -1796,11 +1816,9 @@ export namespace Prisma {
 
   export type LiveMaxAggregateOutputType = {
     id: string | null
-    isPredictionEnabled: boolean | null
     path: string | null
     streamId: string | null
     userId: string | null
-    reportId: string | null
     expiryDate: Date | null
     expiryTimeInMinutes: number | null
     createdDate: Date | null
@@ -1809,11 +1827,9 @@ export namespace Prisma {
 
   export type LiveCountAggregateOutputType = {
     id: number
-    isPredictionEnabled: number
     path: number
     streamId: number
     userId: number
-    reportId: number
     expiryDate: number
     expiryTimeInMinutes: number
     createdDate: number
@@ -1832,11 +1848,9 @@ export namespace Prisma {
 
   export type LiveMinAggregateInputType = {
     id?: true
-    isPredictionEnabled?: true
     path?: true
     streamId?: true
     userId?: true
-    reportId?: true
     expiryDate?: true
     expiryTimeInMinutes?: true
     createdDate?: true
@@ -1845,11 +1859,9 @@ export namespace Prisma {
 
   export type LiveMaxAggregateInputType = {
     id?: true
-    isPredictionEnabled?: true
     path?: true
     streamId?: true
     userId?: true
-    reportId?: true
     expiryDate?: true
     expiryTimeInMinutes?: true
     createdDate?: true
@@ -1858,11 +1870,9 @@ export namespace Prisma {
 
   export type LiveCountAggregateInputType = {
     id?: true
-    isPredictionEnabled?: true
     path?: true
     streamId?: true
     userId?: true
-    reportId?: true
     expiryDate?: true
     expiryTimeInMinutes?: true
     createdDate?: true
@@ -1958,11 +1968,9 @@ export namespace Prisma {
 
   export type LiveGroupByOutputType = {
     id: string
-    isPredictionEnabled: boolean
     path: string
     streamId: string
     userId: string
-    reportId: string | null
     expiryDate: Date | null
     expiryTimeInMinutes: number | null
     createdDate: Date
@@ -1990,11 +1998,9 @@ export namespace Prisma {
 
   export type liveSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    isPredictionEnabled?: boolean
     path?: boolean
     streamId?: boolean
     userId?: boolean
-    reportId?: boolean
     expiryDate?: boolean
     expiryTimeInMinutes?: boolean
     createdDate?: boolean
@@ -2002,68 +2008,60 @@ export namespace Prisma {
     stream?: boolean | streamDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
     report?: boolean | live$reportArgs<ExtArgs>
+    _count?: boolean | LiveCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["live"]>
 
   export type liveSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    isPredictionEnabled?: boolean
     path?: boolean
     streamId?: boolean
     userId?: boolean
-    reportId?: boolean
     expiryDate?: boolean
     expiryTimeInMinutes?: boolean
     createdDate?: boolean
     updatedDate?: boolean
     stream?: boolean | streamDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
-    report?: boolean | live$reportArgs<ExtArgs>
   }, ExtArgs["result"]["live"]>
 
   export type liveSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
-    isPredictionEnabled?: boolean
     path?: boolean
     streamId?: boolean
     userId?: boolean
-    reportId?: boolean
     expiryDate?: boolean
     expiryTimeInMinutes?: boolean
     createdDate?: boolean
     updatedDate?: boolean
     stream?: boolean | streamDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
-    report?: boolean | live$reportArgs<ExtArgs>
   }, ExtArgs["result"]["live"]>
 
   export type liveSelectScalar = {
     id?: boolean
-    isPredictionEnabled?: boolean
     path?: boolean
     streamId?: boolean
     userId?: boolean
-    reportId?: boolean
     expiryDate?: boolean
     expiryTimeInMinutes?: boolean
     createdDate?: boolean
     updatedDate?: boolean
   }
 
-  export type liveOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "isPredictionEnabled" | "path" | "streamId" | "userId" | "reportId" | "expiryDate" | "expiryTimeInMinutes" | "createdDate" | "updatedDate", ExtArgs["result"]["live"]>
+  export type liveOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "path" | "streamId" | "userId" | "expiryDate" | "expiryTimeInMinutes" | "createdDate" | "updatedDate", ExtArgs["result"]["live"]>
   export type liveInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     stream?: boolean | streamDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
     report?: boolean | live$reportArgs<ExtArgs>
+    _count?: boolean | LiveCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type liveIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     stream?: boolean | streamDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
-    report?: boolean | live$reportArgs<ExtArgs>
   }
   export type liveIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     stream?: boolean | streamDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
-    report?: boolean | live$reportArgs<ExtArgs>
   }
 
   export type $livePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2071,15 +2069,13 @@ export namespace Prisma {
     objects: {
       stream: Prisma.$streamPayload<ExtArgs>
       user: Prisma.$userPayload<ExtArgs>
-      report: Prisma.$reportPayload<ExtArgs> | null
+      report: Prisma.$reportPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      isPredictionEnabled: boolean
       path: string
       streamId: string
       userId: string
-      reportId: string | null
       expiryDate: Date | null
       expiryTimeInMinutes: number | null
       createdDate: Date
@@ -2480,7 +2476,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     stream<T extends streamDefaultArgs<ExtArgs> = {}>(args?: Subset<T, streamDefaultArgs<ExtArgs>>): Prisma__streamClient<$Result.GetResult<Prisma.$streamPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    report<T extends live$reportArgs<ExtArgs> = {}>(args?: Subset<T, live$reportArgs<ExtArgs>>): Prisma__reportClient<$Result.GetResult<Prisma.$reportPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    report<T extends live$reportArgs<ExtArgs> = {}>(args?: Subset<T, live$reportArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$reportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2511,11 +2507,9 @@ export namespace Prisma {
    */
   interface liveFieldRefs {
     readonly id: FieldRef<"live", 'String'>
-    readonly isPredictionEnabled: FieldRef<"live", 'Boolean'>
     readonly path: FieldRef<"live", 'String'>
     readonly streamId: FieldRef<"live", 'String'>
     readonly userId: FieldRef<"live", 'String'>
-    readonly reportId: FieldRef<"live", 'String'>
     readonly expiryDate: FieldRef<"live", 'DateTime'>
     readonly expiryTimeInMinutes: FieldRef<"live", 'Int'>
     readonly createdDate: FieldRef<"live", 'DateTime'>
@@ -2932,6 +2926,11 @@ export namespace Prisma {
      */
     include?: reportInclude<ExtArgs> | null
     where?: reportWhereInput
+    orderBy?: reportOrderByWithRelationInput | reportOrderByWithRelationInput[]
+    cursor?: reportWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReportScalarFieldEnum | ReportScalarFieldEnum[]
   }
 
   /**
@@ -2977,6 +2976,7 @@ export namespace Prisma {
     id: string | null
     title: string | null
     description: string | null
+    liveId: string | null
     userId: string | null
     thumbnailUrl: string | null
     recordUrl: string | null
@@ -2989,6 +2989,7 @@ export namespace Prisma {
     id: string | null
     title: string | null
     description: string | null
+    liveId: string | null
     userId: string | null
     thumbnailUrl: string | null
     recordUrl: string | null
@@ -3001,6 +3002,7 @@ export namespace Prisma {
     id: number
     title: number
     description: number
+    liveId: number
     userId: number
     thumbnailUrl: number
     recordUrl: number
@@ -3024,6 +3026,7 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
+    liveId?: true
     userId?: true
     thumbnailUrl?: true
     recordUrl?: true
@@ -3036,6 +3039,7 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
+    liveId?: true
     userId?: true
     thumbnailUrl?: true
     recordUrl?: true
@@ -3048,6 +3052,7 @@ export namespace Prisma {
     id?: true
     title?: true
     description?: true
+    liveId?: true
     userId?: true
     thumbnailUrl?: true
     recordUrl?: true
@@ -3148,6 +3153,7 @@ export namespace Prisma {
     id: string
     title: string | null
     description: string | null
+    liveId: string
     userId: string
     thumbnailUrl: string | null
     recordUrl: string | null
@@ -3180,6 +3186,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
+    liveId?: boolean
     userId?: boolean
     thumbnailUrl?: boolean
     recordUrl?: boolean
@@ -3187,9 +3194,9 @@ export namespace Prisma {
     calculatedClass?: boolean
     createdDate?: boolean
     updatedDate?: boolean
+    live?: boolean | liveDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
     reportItems?: boolean | report$reportItemsArgs<ExtArgs>
-    live?: boolean | report$liveArgs<ExtArgs>
     _count?: boolean | ReportCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["report"]>
 
@@ -3197,6 +3204,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
+    liveId?: boolean
     userId?: boolean
     thumbnailUrl?: boolean
     recordUrl?: boolean
@@ -3204,6 +3212,7 @@ export namespace Prisma {
     calculatedClass?: boolean
     createdDate?: boolean
     updatedDate?: boolean
+    live?: boolean | liveDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["report"]>
 
@@ -3211,6 +3220,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
+    liveId?: boolean
     userId?: boolean
     thumbnailUrl?: boolean
     recordUrl?: boolean
@@ -3218,6 +3228,7 @@ export namespace Prisma {
     calculatedClass?: boolean
     createdDate?: boolean
     updatedDate?: boolean
+    live?: boolean | liveDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["report"]>
 
@@ -3225,6 +3236,7 @@ export namespace Prisma {
     id?: boolean
     title?: boolean
     description?: boolean
+    liveId?: boolean
     userId?: boolean
     thumbnailUrl?: boolean
     recordUrl?: boolean
@@ -3234,31 +3246,34 @@ export namespace Prisma {
     updatedDate?: boolean
   }
 
-  export type reportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "userId" | "thumbnailUrl" | "recordUrl" | "expiryTimeInMinutes" | "calculatedClass" | "createdDate" | "updatedDate", ExtArgs["result"]["report"]>
+  export type reportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "description" | "liveId" | "userId" | "thumbnailUrl" | "recordUrl" | "expiryTimeInMinutes" | "calculatedClass" | "createdDate" | "updatedDate", ExtArgs["result"]["report"]>
   export type reportInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    live?: boolean | liveDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
     reportItems?: boolean | report$reportItemsArgs<ExtArgs>
-    live?: boolean | report$liveArgs<ExtArgs>
     _count?: boolean | ReportCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type reportIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    live?: boolean | liveDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
   }
   export type reportIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    live?: boolean | liveDefaultArgs<ExtArgs>
     user?: boolean | userDefaultArgs<ExtArgs>
   }
 
   export type $reportPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "report"
     objects: {
+      live: Prisma.$livePayload<ExtArgs>
       user: Prisma.$userPayload<ExtArgs>
       reportItems: Prisma.$reportItemsPayload<ExtArgs>[]
-      live: Prisma.$livePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       title: string | null
       description: string | null
+      liveId: string
       userId: string
       thumbnailUrl: string | null
       recordUrl: string | null
@@ -3660,9 +3675,9 @@ export namespace Prisma {
    */
   export interface Prisma__reportClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    live<T extends liveDefaultArgs<ExtArgs> = {}>(args?: Subset<T, liveDefaultArgs<ExtArgs>>): Prisma__liveClient<$Result.GetResult<Prisma.$livePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     user<T extends userDefaultArgs<ExtArgs> = {}>(args?: Subset<T, userDefaultArgs<ExtArgs>>): Prisma__userClient<$Result.GetResult<Prisma.$userPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     reportItems<T extends report$reportItemsArgs<ExtArgs> = {}>(args?: Subset<T, report$reportItemsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$reportItemsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    live<T extends report$liveArgs<ExtArgs> = {}>(args?: Subset<T, report$liveArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$livePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3695,6 +3710,7 @@ export namespace Prisma {
     readonly id: FieldRef<"report", 'String'>
     readonly title: FieldRef<"report", 'String'>
     readonly description: FieldRef<"report", 'String'>
+    readonly liveId: FieldRef<"report", 'String'>
     readonly userId: FieldRef<"report", 'String'>
     readonly thumbnailUrl: FieldRef<"report", 'String'>
     readonly recordUrl: FieldRef<"report", 'String'>
@@ -4119,30 +4135,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ReportItemsScalarFieldEnum | ReportItemsScalarFieldEnum[]
-  }
-
-  /**
-   * report.live
-   */
-  export type report$liveArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the live
-     */
-    select?: liveSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the live
-     */
-    omit?: liveOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: liveInclude<ExtArgs> | null
-    where?: liveWhereInput
-    orderBy?: liveOrderByWithRelationInput | liveOrderByWithRelationInput[]
-    cursor?: liveWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: LiveScalarFieldEnum | LiveScalarFieldEnum[]
   }
 
   /**
@@ -11949,11 +11941,9 @@ export namespace Prisma {
 
   export const LiveScalarFieldEnum: {
     id: 'id',
-    isPredictionEnabled: 'isPredictionEnabled',
     path: 'path',
     streamId: 'streamId',
     userId: 'userId',
-    reportId: 'reportId',
     expiryDate: 'expiryDate',
     expiryTimeInMinutes: 'expiryTimeInMinutes',
     createdDate: 'createdDate',
@@ -11967,6 +11957,7 @@ export namespace Prisma {
     id: 'id',
     title: 'title',
     description: 'description',
+    liveId: 'liveId',
     userId: 'userId',
     thumbnailUrl: 'thumbnailUrl',
     recordUrl: 'recordUrl',
@@ -12132,13 +12123,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -12181,6 +12165,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
@@ -12202,34 +12193,30 @@ export namespace Prisma {
     OR?: liveWhereInput[]
     NOT?: liveWhereInput | liveWhereInput[]
     id?: StringFilter<"live"> | string
-    isPredictionEnabled?: BoolFilter<"live"> | boolean
     path?: StringFilter<"live"> | string
     streamId?: StringFilter<"live"> | string
     userId?: StringFilter<"live"> | string
-    reportId?: StringNullableFilter<"live"> | string | null
     expiryDate?: DateTimeNullableFilter<"live"> | Date | string | null
     expiryTimeInMinutes?: IntNullableFilter<"live"> | number | null
     createdDate?: DateTimeFilter<"live"> | Date | string
     updatedDate?: DateTimeNullableFilter<"live"> | Date | string | null
     stream?: XOR<StreamScalarRelationFilter, streamWhereInput>
     user?: XOR<UserScalarRelationFilter, userWhereInput>
-    report?: XOR<ReportNullableScalarRelationFilter, reportWhereInput> | null
+    report?: ReportListRelationFilter
   }
 
   export type liveOrderByWithRelationInput = {
     id?: SortOrder
-    isPredictionEnabled?: SortOrder
     path?: SortOrder
     streamId?: SortOrder
     userId?: SortOrder
-    reportId?: SortOrderInput | SortOrder
     expiryDate?: SortOrderInput | SortOrder
     expiryTimeInMinutes?: SortOrderInput | SortOrder
     createdDate?: SortOrder
     updatedDate?: SortOrderInput | SortOrder
     stream?: streamOrderByWithRelationInput
     user?: userOrderByWithRelationInput
-    report?: reportOrderByWithRelationInput
+    report?: reportOrderByRelationAggregateInput
   }
 
   export type liveWhereUniqueInput = Prisma.AtLeast<{
@@ -12237,27 +12224,23 @@ export namespace Prisma {
     AND?: liveWhereInput | liveWhereInput[]
     OR?: liveWhereInput[]
     NOT?: liveWhereInput | liveWhereInput[]
-    isPredictionEnabled?: BoolFilter<"live"> | boolean
     path?: StringFilter<"live"> | string
     streamId?: StringFilter<"live"> | string
     userId?: StringFilter<"live"> | string
-    reportId?: StringNullableFilter<"live"> | string | null
     expiryDate?: DateTimeNullableFilter<"live"> | Date | string | null
     expiryTimeInMinutes?: IntNullableFilter<"live"> | number | null
     createdDate?: DateTimeFilter<"live"> | Date | string
     updatedDate?: DateTimeNullableFilter<"live"> | Date | string | null
     stream?: XOR<StreamScalarRelationFilter, streamWhereInput>
     user?: XOR<UserScalarRelationFilter, userWhereInput>
-    report?: XOR<ReportNullableScalarRelationFilter, reportWhereInput> | null
+    report?: ReportListRelationFilter
   }, "id">
 
   export type liveOrderByWithAggregationInput = {
     id?: SortOrder
-    isPredictionEnabled?: SortOrder
     path?: SortOrder
     streamId?: SortOrder
     userId?: SortOrder
-    reportId?: SortOrderInput | SortOrder
     expiryDate?: SortOrderInput | SortOrder
     expiryTimeInMinutes?: SortOrderInput | SortOrder
     createdDate?: SortOrder
@@ -12274,11 +12257,9 @@ export namespace Prisma {
     OR?: liveScalarWhereWithAggregatesInput[]
     NOT?: liveScalarWhereWithAggregatesInput | liveScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"live"> | string
-    isPredictionEnabled?: BoolWithAggregatesFilter<"live"> | boolean
     path?: StringWithAggregatesFilter<"live"> | string
     streamId?: StringWithAggregatesFilter<"live"> | string
     userId?: StringWithAggregatesFilter<"live"> | string
-    reportId?: StringNullableWithAggregatesFilter<"live"> | string | null
     expiryDate?: DateTimeNullableWithAggregatesFilter<"live"> | Date | string | null
     expiryTimeInMinutes?: IntNullableWithAggregatesFilter<"live"> | number | null
     createdDate?: DateTimeWithAggregatesFilter<"live"> | Date | string
@@ -12292,6 +12273,7 @@ export namespace Prisma {
     id?: StringFilter<"report"> | string
     title?: StringNullableFilter<"report"> | string | null
     description?: StringNullableFilter<"report"> | string | null
+    liveId?: StringFilter<"report"> | string
     userId?: StringFilter<"report"> | string
     thumbnailUrl?: StringNullableFilter<"report"> | string | null
     recordUrl?: StringNullableFilter<"report"> | string | null
@@ -12299,15 +12281,16 @@ export namespace Prisma {
     calculatedClass?: JsonNullableFilter<"report">
     createdDate?: DateTimeFilter<"report"> | Date | string
     updatedDate?: DateTimeNullableFilter<"report"> | Date | string | null
+    live?: XOR<LiveScalarRelationFilter, liveWhereInput>
     user?: XOR<UserScalarRelationFilter, userWhereInput>
     reportItems?: ReportItemsListRelationFilter
-    live?: LiveListRelationFilter
   }
 
   export type reportOrderByWithRelationInput = {
     id?: SortOrder
     title?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    liveId?: SortOrder
     userId?: SortOrder
     thumbnailUrl?: SortOrderInput | SortOrder
     recordUrl?: SortOrderInput | SortOrder
@@ -12315,9 +12298,9 @@ export namespace Prisma {
     calculatedClass?: SortOrderInput | SortOrder
     createdDate?: SortOrder
     updatedDate?: SortOrderInput | SortOrder
+    live?: liveOrderByWithRelationInput
     user?: userOrderByWithRelationInput
     reportItems?: reportItemsOrderByRelationAggregateInput
-    live?: liveOrderByRelationAggregateInput
   }
 
   export type reportWhereUniqueInput = Prisma.AtLeast<{
@@ -12327,6 +12310,7 @@ export namespace Prisma {
     NOT?: reportWhereInput | reportWhereInput[]
     title?: StringNullableFilter<"report"> | string | null
     description?: StringNullableFilter<"report"> | string | null
+    liveId?: StringFilter<"report"> | string
     userId?: StringFilter<"report"> | string
     thumbnailUrl?: StringNullableFilter<"report"> | string | null
     recordUrl?: StringNullableFilter<"report"> | string | null
@@ -12334,15 +12318,16 @@ export namespace Prisma {
     calculatedClass?: JsonNullableFilter<"report">
     createdDate?: DateTimeFilter<"report"> | Date | string
     updatedDate?: DateTimeNullableFilter<"report"> | Date | string | null
+    live?: XOR<LiveScalarRelationFilter, liveWhereInput>
     user?: XOR<UserScalarRelationFilter, userWhereInput>
     reportItems?: ReportItemsListRelationFilter
-    live?: LiveListRelationFilter
   }, "id">
 
   export type reportOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrderInput | SortOrder
     description?: SortOrderInput | SortOrder
+    liveId?: SortOrder
     userId?: SortOrder
     thumbnailUrl?: SortOrderInput | SortOrder
     recordUrl?: SortOrderInput | SortOrder
@@ -12364,6 +12349,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"report"> | string
     title?: StringNullableWithAggregatesFilter<"report"> | string | null
     description?: StringNullableWithAggregatesFilter<"report"> | string | null
+    liveId?: StringWithAggregatesFilter<"report"> | string
     userId?: StringWithAggregatesFilter<"report"> | string
     thumbnailUrl?: StringNullableWithAggregatesFilter<"report"> | string | null
     recordUrl?: StringNullableWithAggregatesFilter<"report"> | string | null
@@ -12852,7 +12838,6 @@ export namespace Prisma {
 
   export type liveCreateInput = {
     id?: string
-    isPredictionEnabled?: boolean
     path: string
     expiryDate?: Date | string | null
     expiryTimeInMinutes?: number | null
@@ -12860,25 +12845,23 @@ export namespace Prisma {
     updatedDate?: Date | string | null
     stream: streamCreateNestedOneWithoutLiveInput
     user: userCreateNestedOneWithoutLiveInput
-    report?: reportCreateNestedOneWithoutLiveInput
+    report?: reportCreateNestedManyWithoutLiveInput
   }
 
   export type liveUncheckedCreateInput = {
     id?: string
-    isPredictionEnabled?: boolean
     path: string
     streamId: string
     userId: string
-    reportId?: string | null
     expiryDate?: Date | string | null
     expiryTimeInMinutes?: number | null
     createdDate?: Date | string
     updatedDate?: Date | string | null
+    report?: reportUncheckedCreateNestedManyWithoutLiveInput
   }
 
   export type liveUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
     path?: StringFieldUpdateOperationsInput | string
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12886,29 +12869,26 @@ export namespace Prisma {
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stream?: streamUpdateOneRequiredWithoutLiveNestedInput
     user?: userUpdateOneRequiredWithoutLiveNestedInput
-    report?: reportUpdateOneWithoutLiveNestedInput
+    report?: reportUpdateManyWithoutLiveNestedInput
   }
 
   export type liveUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
     path?: StringFieldUpdateOperationsInput | string
     streamId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    reportId?: NullableStringFieldUpdateOperationsInput | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    report?: reportUncheckedUpdateManyWithoutLiveNestedInput
   }
 
   export type liveCreateManyInput = {
     id?: string
-    isPredictionEnabled?: boolean
     path: string
     streamId: string
     userId: string
-    reportId?: string | null
     expiryDate?: Date | string | null
     expiryTimeInMinutes?: number | null
     createdDate?: Date | string
@@ -12917,7 +12897,6 @@ export namespace Prisma {
 
   export type liveUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
     path?: StringFieldUpdateOperationsInput | string
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
@@ -12927,11 +12906,9 @@ export namespace Prisma {
 
   export type liveUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
     path?: StringFieldUpdateOperationsInput | string
     streamId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    reportId?: NullableStringFieldUpdateOperationsInput | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12948,15 +12925,16 @@ export namespace Prisma {
     calculatedClass?: NullableJsonNullValueInput | InputJsonValue
     createdDate?: Date | string
     updatedDate?: Date | string | null
+    live: liveCreateNestedOneWithoutReportInput
     user: userCreateNestedOneWithoutReportInput
     reportItems?: reportItemsCreateNestedManyWithoutReportInput
-    live?: liveCreateNestedManyWithoutReportInput
   }
 
   export type reportUncheckedCreateInput = {
     id?: string
     title?: string | null
     description?: string | null
+    liveId: string
     userId: string
     thumbnailUrl?: string | null
     recordUrl?: string | null
@@ -12965,7 +12943,6 @@ export namespace Prisma {
     createdDate?: Date | string
     updatedDate?: Date | string | null
     reportItems?: reportItemsUncheckedCreateNestedManyWithoutReportInput
-    live?: liveUncheckedCreateNestedManyWithoutReportInput
   }
 
   export type reportUpdateInput = {
@@ -12978,15 +12955,16 @@ export namespace Prisma {
     calculatedClass?: NullableJsonNullValueInput | InputJsonValue
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    live?: liveUpdateOneRequiredWithoutReportNestedInput
     user?: userUpdateOneRequiredWithoutReportNestedInput
     reportItems?: reportItemsUpdateManyWithoutReportNestedInput
-    live?: liveUpdateManyWithoutReportNestedInput
   }
 
   export type reportUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    liveId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     recordUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -12995,13 +12973,13 @@ export namespace Prisma {
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reportItems?: reportItemsUncheckedUpdateManyWithoutReportNestedInput
-    live?: liveUncheckedUpdateManyWithoutReportNestedInput
   }
 
   export type reportCreateManyInput = {
     id?: string
     title?: string | null
     description?: string | null
+    liveId: string
     userId: string
     thumbnailUrl?: string | null
     recordUrl?: string | null
@@ -13027,6 +13005,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    liveId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     recordUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13571,26 +13550,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -13634,9 +13593,10 @@ export namespace Prisma {
     isNot?: userWhereInput
   }
 
-  export type ReportNullableScalarRelationFilter = {
-    is?: reportWhereInput | null
-    isNot?: reportWhereInput | null
+  export type ReportListRelationFilter = {
+    every?: reportWhereInput
+    some?: reportWhereInput
+    none?: reportWhereInput
   }
 
   export type SortOrderInput = {
@@ -13644,13 +13604,15 @@ export namespace Prisma {
     nulls?: NullsOrder
   }
 
+  export type reportOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type liveCountOrderByAggregateInput = {
     id?: SortOrder
-    isPredictionEnabled?: SortOrder
     path?: SortOrder
     streamId?: SortOrder
     userId?: SortOrder
-    reportId?: SortOrder
     expiryDate?: SortOrder
     expiryTimeInMinutes?: SortOrder
     createdDate?: SortOrder
@@ -13663,11 +13625,9 @@ export namespace Prisma {
 
   export type liveMaxOrderByAggregateInput = {
     id?: SortOrder
-    isPredictionEnabled?: SortOrder
     path?: SortOrder
     streamId?: SortOrder
     userId?: SortOrder
-    reportId?: SortOrder
     expiryDate?: SortOrder
     expiryTimeInMinutes?: SortOrder
     createdDate?: SortOrder
@@ -13676,11 +13636,9 @@ export namespace Prisma {
 
   export type liveMinOrderByAggregateInput = {
     id?: SortOrder
-    isPredictionEnabled?: SortOrder
     path?: SortOrder
     streamId?: SortOrder
     userId?: SortOrder
-    reportId?: SortOrder
     expiryDate?: SortOrder
     expiryTimeInMinutes?: SortOrder
     createdDate?: SortOrder
@@ -13707,32 +13665,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -13778,6 +13710,21 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
   export type JsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -13802,23 +13749,18 @@ export namespace Prisma {
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
   }
 
+  export type LiveScalarRelationFilter = {
+    is?: liveWhereInput
+    isNot?: liveWhereInput
+  }
+
   export type ReportItemsListRelationFilter = {
     every?: reportItemsWhereInput
     some?: reportItemsWhereInput
     none?: reportItemsWhereInput
   }
 
-  export type LiveListRelationFilter = {
-    every?: liveWhereInput
-    some?: liveWhereInput
-    none?: liveWhereInput
-  }
-
   export type reportItemsOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type liveOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13826,6 +13768,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    liveId?: SortOrder
     userId?: SortOrder
     thumbnailUrl?: SortOrder
     recordUrl?: SortOrder
@@ -13843,6 +13786,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    liveId?: SortOrder
     userId?: SortOrder
     thumbnailUrl?: SortOrder
     recordUrl?: SortOrder
@@ -13855,6 +13799,7 @@ export namespace Prisma {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
+    liveId?: SortOrder
     userId?: SortOrder
     thumbnailUrl?: SortOrder
     recordUrl?: SortOrder
@@ -13865,6 +13810,24 @@ export namespace Prisma {
 
   export type reportSumOrderByAggregateInput = {
     expiryTimeInMinutes?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
   export type JsonNullableWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -13922,6 +13885,21 @@ export namespace Prisma {
     updatedDate?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type LiveListRelationFilter = {
+    every?: liveWhereInput
+    some?: liveWhereInput
+    none?: liveWhereInput
+  }
+
+  export type liveOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type streamCountOrderByAggregateInput = {
     id?: SortOrder
     url?: SortOrder
@@ -13949,6 +13927,14 @@ export namespace Prisma {
     updatedDate?: SortOrder
   }
 
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type StringNullableListFilter<$PrismaModel = never> = {
     equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     has?: string | StringFieldRefInput<$PrismaModel> | null
@@ -13961,12 +13947,6 @@ export namespace Prisma {
     every?: streamWhereInput
     some?: streamWhereInput
     none?: streamWhereInput
-  }
-
-  export type ReportListRelationFilter = {
-    every?: reportWhereInput
-    some?: reportWhereInput
-    none?: reportWhereInput
   }
 
   export type AuditListRelationFilter = {
@@ -13988,10 +13968,6 @@ export namespace Prisma {
   }
 
   export type streamOrderByRelationAggregateInput = {
-    _count?: SortOrder
-  }
-
-  export type reportOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14192,18 +14168,22 @@ export namespace Prisma {
     connect?: userWhereUniqueInput
   }
 
-  export type reportCreateNestedOneWithoutLiveInput = {
-    create?: XOR<reportCreateWithoutLiveInput, reportUncheckedCreateWithoutLiveInput>
-    connectOrCreate?: reportCreateOrConnectWithoutLiveInput
-    connect?: reportWhereUniqueInput
+  export type reportCreateNestedManyWithoutLiveInput = {
+    create?: XOR<reportCreateWithoutLiveInput, reportUncheckedCreateWithoutLiveInput> | reportCreateWithoutLiveInput[] | reportUncheckedCreateWithoutLiveInput[]
+    connectOrCreate?: reportCreateOrConnectWithoutLiveInput | reportCreateOrConnectWithoutLiveInput[]
+    createMany?: reportCreateManyLiveInputEnvelope
+    connect?: reportWhereUniqueInput | reportWhereUniqueInput[]
+  }
+
+  export type reportUncheckedCreateNestedManyWithoutLiveInput = {
+    create?: XOR<reportCreateWithoutLiveInput, reportUncheckedCreateWithoutLiveInput> | reportCreateWithoutLiveInput[] | reportUncheckedCreateWithoutLiveInput[]
+    connectOrCreate?: reportCreateOrConnectWithoutLiveInput | reportCreateOrConnectWithoutLiveInput[]
+    createMany?: reportCreateManyLiveInputEnvelope
+    connect?: reportWhereUniqueInput | reportWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type NullableDateTimeFieldUpdateOperationsInput = {
@@ -14238,18 +14218,38 @@ export namespace Prisma {
     update?: XOR<XOR<userUpdateToOneWithWhereWithoutLiveInput, userUpdateWithoutLiveInput>, userUncheckedUpdateWithoutLiveInput>
   }
 
-  export type reportUpdateOneWithoutLiveNestedInput = {
-    create?: XOR<reportCreateWithoutLiveInput, reportUncheckedCreateWithoutLiveInput>
-    connectOrCreate?: reportCreateOrConnectWithoutLiveInput
-    upsert?: reportUpsertWithoutLiveInput
-    disconnect?: reportWhereInput | boolean
-    delete?: reportWhereInput | boolean
-    connect?: reportWhereUniqueInput
-    update?: XOR<XOR<reportUpdateToOneWithWhereWithoutLiveInput, reportUpdateWithoutLiveInput>, reportUncheckedUpdateWithoutLiveInput>
+  export type reportUpdateManyWithoutLiveNestedInput = {
+    create?: XOR<reportCreateWithoutLiveInput, reportUncheckedCreateWithoutLiveInput> | reportCreateWithoutLiveInput[] | reportUncheckedCreateWithoutLiveInput[]
+    connectOrCreate?: reportCreateOrConnectWithoutLiveInput | reportCreateOrConnectWithoutLiveInput[]
+    upsert?: reportUpsertWithWhereUniqueWithoutLiveInput | reportUpsertWithWhereUniqueWithoutLiveInput[]
+    createMany?: reportCreateManyLiveInputEnvelope
+    set?: reportWhereUniqueInput | reportWhereUniqueInput[]
+    disconnect?: reportWhereUniqueInput | reportWhereUniqueInput[]
+    delete?: reportWhereUniqueInput | reportWhereUniqueInput[]
+    connect?: reportWhereUniqueInput | reportWhereUniqueInput[]
+    update?: reportUpdateWithWhereUniqueWithoutLiveInput | reportUpdateWithWhereUniqueWithoutLiveInput[]
+    updateMany?: reportUpdateManyWithWhereWithoutLiveInput | reportUpdateManyWithWhereWithoutLiveInput[]
+    deleteMany?: reportScalarWhereInput | reportScalarWhereInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
+  export type reportUncheckedUpdateManyWithoutLiveNestedInput = {
+    create?: XOR<reportCreateWithoutLiveInput, reportUncheckedCreateWithoutLiveInput> | reportCreateWithoutLiveInput[] | reportUncheckedCreateWithoutLiveInput[]
+    connectOrCreate?: reportCreateOrConnectWithoutLiveInput | reportCreateOrConnectWithoutLiveInput[]
+    upsert?: reportUpsertWithWhereUniqueWithoutLiveInput | reportUpsertWithWhereUniqueWithoutLiveInput[]
+    createMany?: reportCreateManyLiveInputEnvelope
+    set?: reportWhereUniqueInput | reportWhereUniqueInput[]
+    disconnect?: reportWhereUniqueInput | reportWhereUniqueInput[]
+    delete?: reportWhereUniqueInput | reportWhereUniqueInput[]
+    connect?: reportWhereUniqueInput | reportWhereUniqueInput[]
+    update?: reportUpdateWithWhereUniqueWithoutLiveInput | reportUpdateWithWhereUniqueWithoutLiveInput[]
+    updateMany?: reportUpdateManyWithWhereWithoutLiveInput | reportUpdateManyWithWhereWithoutLiveInput[]
+    deleteMany?: reportScalarWhereInput | reportScalarWhereInput[]
+  }
+
+  export type liveCreateNestedOneWithoutReportInput = {
+    create?: XOR<liveCreateWithoutReportInput, liveUncheckedCreateWithoutReportInput>
+    connectOrCreate?: liveCreateOrConnectWithoutReportInput
+    connect?: liveWhereUniqueInput
   }
 
   export type userCreateNestedOneWithoutReportInput = {
@@ -14265,13 +14265,6 @@ export namespace Prisma {
     connect?: reportItemsWhereUniqueInput | reportItemsWhereUniqueInput[]
   }
 
-  export type liveCreateNestedManyWithoutReportInput = {
-    create?: XOR<liveCreateWithoutReportInput, liveUncheckedCreateWithoutReportInput> | liveCreateWithoutReportInput[] | liveUncheckedCreateWithoutReportInput[]
-    connectOrCreate?: liveCreateOrConnectWithoutReportInput | liveCreateOrConnectWithoutReportInput[]
-    createMany?: liveCreateManyReportInputEnvelope
-    connect?: liveWhereUniqueInput | liveWhereUniqueInput[]
-  }
-
   export type reportItemsUncheckedCreateNestedManyWithoutReportInput = {
     create?: XOR<reportItemsCreateWithoutReportInput, reportItemsUncheckedCreateWithoutReportInput> | reportItemsCreateWithoutReportInput[] | reportItemsUncheckedCreateWithoutReportInput[]
     connectOrCreate?: reportItemsCreateOrConnectWithoutReportInput | reportItemsCreateOrConnectWithoutReportInput[]
@@ -14279,11 +14272,16 @@ export namespace Prisma {
     connect?: reportItemsWhereUniqueInput | reportItemsWhereUniqueInput[]
   }
 
-  export type liveUncheckedCreateNestedManyWithoutReportInput = {
-    create?: XOR<liveCreateWithoutReportInput, liveUncheckedCreateWithoutReportInput> | liveCreateWithoutReportInput[] | liveUncheckedCreateWithoutReportInput[]
-    connectOrCreate?: liveCreateOrConnectWithoutReportInput | liveCreateOrConnectWithoutReportInput[]
-    createMany?: liveCreateManyReportInputEnvelope
-    connect?: liveWhereUniqueInput | liveWhereUniqueInput[]
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type liveUpdateOneRequiredWithoutReportNestedInput = {
+    create?: XOR<liveCreateWithoutReportInput, liveUncheckedCreateWithoutReportInput>
+    connectOrCreate?: liveCreateOrConnectWithoutReportInput
+    upsert?: liveUpsertWithoutReportInput
+    connect?: liveWhereUniqueInput
+    update?: XOR<XOR<liveUpdateToOneWithWhereWithoutReportInput, liveUpdateWithoutReportInput>, liveUncheckedUpdateWithoutReportInput>
   }
 
   export type userUpdateOneRequiredWithoutReportNestedInput = {
@@ -14308,20 +14306,6 @@ export namespace Prisma {
     deleteMany?: reportItemsScalarWhereInput | reportItemsScalarWhereInput[]
   }
 
-  export type liveUpdateManyWithoutReportNestedInput = {
-    create?: XOR<liveCreateWithoutReportInput, liveUncheckedCreateWithoutReportInput> | liveCreateWithoutReportInput[] | liveUncheckedCreateWithoutReportInput[]
-    connectOrCreate?: liveCreateOrConnectWithoutReportInput | liveCreateOrConnectWithoutReportInput[]
-    upsert?: liveUpsertWithWhereUniqueWithoutReportInput | liveUpsertWithWhereUniqueWithoutReportInput[]
-    createMany?: liveCreateManyReportInputEnvelope
-    set?: liveWhereUniqueInput | liveWhereUniqueInput[]
-    disconnect?: liveWhereUniqueInput | liveWhereUniqueInput[]
-    delete?: liveWhereUniqueInput | liveWhereUniqueInput[]
-    connect?: liveWhereUniqueInput | liveWhereUniqueInput[]
-    update?: liveUpdateWithWhereUniqueWithoutReportInput | liveUpdateWithWhereUniqueWithoutReportInput[]
-    updateMany?: liveUpdateManyWithWhereWithoutReportInput | liveUpdateManyWithWhereWithoutReportInput[]
-    deleteMany?: liveScalarWhereInput | liveScalarWhereInput[]
-  }
-
   export type reportItemsUncheckedUpdateManyWithoutReportNestedInput = {
     create?: XOR<reportItemsCreateWithoutReportInput, reportItemsUncheckedCreateWithoutReportInput> | reportItemsCreateWithoutReportInput[] | reportItemsUncheckedCreateWithoutReportInput[]
     connectOrCreate?: reportItemsCreateOrConnectWithoutReportInput | reportItemsCreateOrConnectWithoutReportInput[]
@@ -14334,20 +14318,6 @@ export namespace Prisma {
     update?: reportItemsUpdateWithWhereUniqueWithoutReportInput | reportItemsUpdateWithWhereUniqueWithoutReportInput[]
     updateMany?: reportItemsUpdateManyWithWhereWithoutReportInput | reportItemsUpdateManyWithWhereWithoutReportInput[]
     deleteMany?: reportItemsScalarWhereInput | reportItemsScalarWhereInput[]
-  }
-
-  export type liveUncheckedUpdateManyWithoutReportNestedInput = {
-    create?: XOR<liveCreateWithoutReportInput, liveUncheckedCreateWithoutReportInput> | liveCreateWithoutReportInput[] | liveUncheckedCreateWithoutReportInput[]
-    connectOrCreate?: liveCreateOrConnectWithoutReportInput | liveCreateOrConnectWithoutReportInput[]
-    upsert?: liveUpsertWithWhereUniqueWithoutReportInput | liveUpsertWithWhereUniqueWithoutReportInput[]
-    createMany?: liveCreateManyReportInputEnvelope
-    set?: liveWhereUniqueInput | liveWhereUniqueInput[]
-    disconnect?: liveWhereUniqueInput | liveWhereUniqueInput[]
-    delete?: liveWhereUniqueInput | liveWhereUniqueInput[]
-    connect?: liveWhereUniqueInput | liveWhereUniqueInput[]
-    update?: liveUpdateWithWhereUniqueWithoutReportInput | liveUpdateWithWhereUniqueWithoutReportInput[]
-    updateMany?: liveUpdateManyWithWhereWithoutReportInput | liveUpdateManyWithWhereWithoutReportInput[]
-    deleteMany?: liveScalarWhereInput | liveScalarWhereInput[]
   }
 
   export type reportCreateNestedOneWithoutReportItemsInput = {
@@ -14382,6 +14352,10 @@ export namespace Prisma {
     connectOrCreate?: liveCreateOrConnectWithoutStreamInput | liveCreateOrConnectWithoutStreamInput[]
     createMany?: liveCreateManyStreamInputEnvelope
     connect?: liveWhereUniqueInput | liveWhereUniqueInput[]
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type userUpdateOneRequiredWithoutStreamNestedInput = {
@@ -14739,25 +14713,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -14819,31 +14774,6 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
@@ -14898,6 +14828,37 @@ export namespace Prisma {
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
   export type NestedJsonNullableFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
@@ -14920,6 +14881,19 @@ export namespace Prisma {
     gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
     not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type streamCreateWithoutLiveInput = {
@@ -15017,6 +14991,11 @@ export namespace Prisma {
     create: XOR<reportCreateWithoutLiveInput, reportUncheckedCreateWithoutLiveInput>
   }
 
+  export type reportCreateManyLiveInputEnvelope = {
+    data: reportCreateManyLiveInput | reportCreateManyLiveInput[]
+    skipDuplicates?: boolean
+  }
+
   export type streamUpsertWithoutLiveInput = {
     update: XOR<streamUpdateWithoutLiveInput, streamUncheckedUpdateWithoutLiveInput>
     create: XOR<streamCreateWithoutLiveInput, streamUncheckedCreateWithoutLiveInput>
@@ -15091,43 +15070,64 @@ export namespace Prisma {
     authentication?: authenticationUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type reportUpsertWithoutLiveInput = {
+  export type reportUpsertWithWhereUniqueWithoutLiveInput = {
+    where: reportWhereUniqueInput
     update: XOR<reportUpdateWithoutLiveInput, reportUncheckedUpdateWithoutLiveInput>
     create: XOR<reportCreateWithoutLiveInput, reportUncheckedCreateWithoutLiveInput>
-    where?: reportWhereInput
   }
 
-  export type reportUpdateToOneWithWhereWithoutLiveInput = {
-    where?: reportWhereInput
+  export type reportUpdateWithWhereUniqueWithoutLiveInput = {
+    where: reportWhereUniqueInput
     data: XOR<reportUpdateWithoutLiveInput, reportUncheckedUpdateWithoutLiveInput>
   }
 
-  export type reportUpdateWithoutLiveInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    recordUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
-    calculatedClass?: NullableJsonNullValueInput | InputJsonValue
-    createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    user?: userUpdateOneRequiredWithoutReportNestedInput
-    reportItems?: reportItemsUpdateManyWithoutReportNestedInput
+  export type reportUpdateManyWithWhereWithoutLiveInput = {
+    where: reportScalarWhereInput
+    data: XOR<reportUpdateManyMutationInput, reportUncheckedUpdateManyWithoutLiveInput>
   }
 
-  export type reportUncheckedUpdateWithoutLiveInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    title?: NullableStringFieldUpdateOperationsInput | string | null
-    description?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: StringFieldUpdateOperationsInput | string
-    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    recordUrl?: NullableStringFieldUpdateOperationsInput | string | null
-    expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
-    calculatedClass?: NullableJsonNullValueInput | InputJsonValue
-    createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    reportItems?: reportItemsUncheckedUpdateManyWithoutReportNestedInput
+  export type reportScalarWhereInput = {
+    AND?: reportScalarWhereInput | reportScalarWhereInput[]
+    OR?: reportScalarWhereInput[]
+    NOT?: reportScalarWhereInput | reportScalarWhereInput[]
+    id?: StringFilter<"report"> | string
+    title?: StringNullableFilter<"report"> | string | null
+    description?: StringNullableFilter<"report"> | string | null
+    liveId?: StringFilter<"report"> | string
+    userId?: StringFilter<"report"> | string
+    thumbnailUrl?: StringNullableFilter<"report"> | string | null
+    recordUrl?: StringNullableFilter<"report"> | string | null
+    expiryTimeInMinutes?: IntNullableFilter<"report"> | number | null
+    calculatedClass?: JsonNullableFilter<"report">
+    createdDate?: DateTimeFilter<"report"> | Date | string
+    updatedDate?: DateTimeNullableFilter<"report"> | Date | string | null
+  }
+
+  export type liveCreateWithoutReportInput = {
+    id?: string
+    path: string
+    expiryDate?: Date | string | null
+    expiryTimeInMinutes?: number | null
+    createdDate?: Date | string
+    updatedDate?: Date | string | null
+    stream: streamCreateNestedOneWithoutLiveInput
+    user: userCreateNestedOneWithoutLiveInput
+  }
+
+  export type liveUncheckedCreateWithoutReportInput = {
+    id?: string
+    path: string
+    streamId: string
+    userId: string
+    expiryDate?: Date | string | null
+    expiryTimeInMinutes?: number | null
+    createdDate?: Date | string
+    updatedDate?: Date | string | null
+  }
+
+  export type liveCreateOrConnectWithoutReportInput = {
+    where: liveWhereUniqueInput
+    create: XOR<liveCreateWithoutReportInput, liveUncheckedCreateWithoutReportInput>
   }
 
   export type userCreateWithoutReportInput = {
@@ -15193,38 +15193,37 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type liveCreateWithoutReportInput = {
-    id?: string
-    isPredictionEnabled?: boolean
-    path: string
-    expiryDate?: Date | string | null
-    expiryTimeInMinutes?: number | null
-    createdDate?: Date | string
-    updatedDate?: Date | string | null
-    stream: streamCreateNestedOneWithoutLiveInput
-    user: userCreateNestedOneWithoutLiveInput
-  }
-
-  export type liveUncheckedCreateWithoutReportInput = {
-    id?: string
-    isPredictionEnabled?: boolean
-    path: string
-    streamId: string
-    userId: string
-    expiryDate?: Date | string | null
-    expiryTimeInMinutes?: number | null
-    createdDate?: Date | string
-    updatedDate?: Date | string | null
-  }
-
-  export type liveCreateOrConnectWithoutReportInput = {
-    where: liveWhereUniqueInput
+  export type liveUpsertWithoutReportInput = {
+    update: XOR<liveUpdateWithoutReportInput, liveUncheckedUpdateWithoutReportInput>
     create: XOR<liveCreateWithoutReportInput, liveUncheckedCreateWithoutReportInput>
+    where?: liveWhereInput
   }
 
-  export type liveCreateManyReportInputEnvelope = {
-    data: liveCreateManyReportInput | liveCreateManyReportInput[]
-    skipDuplicates?: boolean
+  export type liveUpdateToOneWithWhereWithoutReportInput = {
+    where?: liveWhereInput
+    data: XOR<liveUpdateWithoutReportInput, liveUncheckedUpdateWithoutReportInput>
+  }
+
+  export type liveUpdateWithoutReportInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    stream?: streamUpdateOneRequiredWithoutLiveNestedInput
+    user?: userUpdateOneRequiredWithoutLiveNestedInput
+  }
+
+  export type liveUncheckedUpdateWithoutReportInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    path?: StringFieldUpdateOperationsInput | string
+    streamId?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type userUpsertWithoutReportInput = {
@@ -15299,38 +15298,6 @@ export namespace Prisma {
     updatedDate?: DateTimeNullableFilter<"reportItems"> | Date | string | null
   }
 
-  export type liveUpsertWithWhereUniqueWithoutReportInput = {
-    where: liveWhereUniqueInput
-    update: XOR<liveUpdateWithoutReportInput, liveUncheckedUpdateWithoutReportInput>
-    create: XOR<liveCreateWithoutReportInput, liveUncheckedCreateWithoutReportInput>
-  }
-
-  export type liveUpdateWithWhereUniqueWithoutReportInput = {
-    where: liveWhereUniqueInput
-    data: XOR<liveUpdateWithoutReportInput, liveUncheckedUpdateWithoutReportInput>
-  }
-
-  export type liveUpdateManyWithWhereWithoutReportInput = {
-    where: liveScalarWhereInput
-    data: XOR<liveUpdateManyMutationInput, liveUncheckedUpdateManyWithoutReportInput>
-  }
-
-  export type liveScalarWhereInput = {
-    AND?: liveScalarWhereInput | liveScalarWhereInput[]
-    OR?: liveScalarWhereInput[]
-    NOT?: liveScalarWhereInput | liveScalarWhereInput[]
-    id?: StringFilter<"live"> | string
-    isPredictionEnabled?: BoolFilter<"live"> | boolean
-    path?: StringFilter<"live"> | string
-    streamId?: StringFilter<"live"> | string
-    userId?: StringFilter<"live"> | string
-    reportId?: StringNullableFilter<"live"> | string | null
-    expiryDate?: DateTimeNullableFilter<"live"> | Date | string | null
-    expiryTimeInMinutes?: IntNullableFilter<"live"> | number | null
-    createdDate?: DateTimeFilter<"live"> | Date | string
-    updatedDate?: DateTimeNullableFilter<"live"> | Date | string | null
-  }
-
   export type reportCreateWithoutReportItemsInput = {
     id?: string
     title?: string | null
@@ -15341,14 +15308,15 @@ export namespace Prisma {
     calculatedClass?: NullableJsonNullValueInput | InputJsonValue
     createdDate?: Date | string
     updatedDate?: Date | string | null
+    live: liveCreateNestedOneWithoutReportInput
     user: userCreateNestedOneWithoutReportInput
-    live?: liveCreateNestedManyWithoutReportInput
   }
 
   export type reportUncheckedCreateWithoutReportItemsInput = {
     id?: string
     title?: string | null
     description?: string | null
+    liveId: string
     userId: string
     thumbnailUrl?: string | null
     recordUrl?: string | null
@@ -15356,7 +15324,6 @@ export namespace Prisma {
     calculatedClass?: NullableJsonNullValueInput | InputJsonValue
     createdDate?: Date | string
     updatedDate?: Date | string | null
-    live?: liveUncheckedCreateNestedManyWithoutReportInput
   }
 
   export type reportCreateOrConnectWithoutReportItemsInput = {
@@ -15385,14 +15352,15 @@ export namespace Prisma {
     calculatedClass?: NullableJsonNullValueInput | InputJsonValue
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    live?: liveUpdateOneRequiredWithoutReportNestedInput
     user?: userUpdateOneRequiredWithoutReportNestedInput
-    live?: liveUpdateManyWithoutReportNestedInput
   }
 
   export type reportUncheckedUpdateWithoutReportItemsInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    liveId?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     recordUrl?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15400,7 +15368,6 @@ export namespace Prisma {
     calculatedClass?: NullableJsonNullValueInput | InputJsonValue
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    live?: liveUncheckedUpdateManyWithoutReportNestedInput
   }
 
   export type userCreateWithoutStreamInput = {
@@ -15444,26 +15411,24 @@ export namespace Prisma {
 
   export type liveCreateWithoutStreamInput = {
     id?: string
-    isPredictionEnabled?: boolean
     path: string
     expiryDate?: Date | string | null
     expiryTimeInMinutes?: number | null
     createdDate?: Date | string
     updatedDate?: Date | string | null
     user: userCreateNestedOneWithoutLiveInput
-    report?: reportCreateNestedOneWithoutLiveInput
+    report?: reportCreateNestedManyWithoutLiveInput
   }
 
   export type liveUncheckedCreateWithoutStreamInput = {
     id?: string
-    isPredictionEnabled?: boolean
     path: string
     userId: string
-    reportId?: string | null
     expiryDate?: Date | string | null
     expiryTimeInMinutes?: number | null
     createdDate?: Date | string
     updatedDate?: Date | string | null
+    report?: reportUncheckedCreateNestedManyWithoutLiveInput
   }
 
   export type liveCreateOrConnectWithoutStreamInput = {
@@ -15537,6 +15502,20 @@ export namespace Prisma {
     data: XOR<liveUpdateManyMutationInput, liveUncheckedUpdateManyWithoutStreamInput>
   }
 
+  export type liveScalarWhereInput = {
+    AND?: liveScalarWhereInput | liveScalarWhereInput[]
+    OR?: liveScalarWhereInput[]
+    NOT?: liveScalarWhereInput | liveScalarWhereInput[]
+    id?: StringFilter<"live"> | string
+    path?: StringFilter<"live"> | string
+    streamId?: StringFilter<"live"> | string
+    userId?: StringFilter<"live"> | string
+    expiryDate?: DateTimeNullableFilter<"live"> | Date | string | null
+    expiryTimeInMinutes?: IntNullableFilter<"live"> | number | null
+    createdDate?: DateTimeFilter<"live"> | Date | string
+    updatedDate?: DateTimeNullableFilter<"live"> | Date | string | null
+  }
+
   export type streamCreateWithoutUserInput = {
     id?: string
     url: string
@@ -15567,26 +15546,24 @@ export namespace Prisma {
 
   export type liveCreateWithoutUserInput = {
     id?: string
-    isPredictionEnabled?: boolean
     path: string
     expiryDate?: Date | string | null
     expiryTimeInMinutes?: number | null
     createdDate?: Date | string
     updatedDate?: Date | string | null
     stream: streamCreateNestedOneWithoutLiveInput
-    report?: reportCreateNestedOneWithoutLiveInput
+    report?: reportCreateNestedManyWithoutLiveInput
   }
 
   export type liveUncheckedCreateWithoutUserInput = {
     id?: string
-    isPredictionEnabled?: boolean
     path: string
     streamId: string
-    reportId?: string | null
     expiryDate?: Date | string | null
     expiryTimeInMinutes?: number | null
     createdDate?: Date | string
     updatedDate?: Date | string | null
+    report?: reportUncheckedCreateNestedManyWithoutLiveInput
   }
 
   export type liveCreateOrConnectWithoutUserInput = {
@@ -15609,14 +15586,15 @@ export namespace Prisma {
     calculatedClass?: NullableJsonNullValueInput | InputJsonValue
     createdDate?: Date | string
     updatedDate?: Date | string | null
+    live: liveCreateNestedOneWithoutReportInput
     reportItems?: reportItemsCreateNestedManyWithoutReportInput
-    live?: liveCreateNestedManyWithoutReportInput
   }
 
   export type reportUncheckedCreateWithoutUserInput = {
     id?: string
     title?: string | null
     description?: string | null
+    liveId: string
     thumbnailUrl?: string | null
     recordUrl?: string | null
     expiryTimeInMinutes?: number | null
@@ -15624,7 +15602,6 @@ export namespace Prisma {
     createdDate?: Date | string
     updatedDate?: Date | string | null
     reportItems?: reportItemsUncheckedCreateNestedManyWithoutReportInput
-    live?: liveUncheckedCreateNestedManyWithoutReportInput
   }
 
   export type reportCreateOrConnectWithoutUserInput = {
@@ -15785,22 +15762,6 @@ export namespace Prisma {
   export type reportUpdateManyWithWhereWithoutUserInput = {
     where: reportScalarWhereInput
     data: XOR<reportUpdateManyMutationInput, reportUncheckedUpdateManyWithoutUserInput>
-  }
-
-  export type reportScalarWhereInput = {
-    AND?: reportScalarWhereInput | reportScalarWhereInput[]
-    OR?: reportScalarWhereInput[]
-    NOT?: reportScalarWhereInput | reportScalarWhereInput[]
-    id?: StringFilter<"report"> | string
-    title?: StringNullableFilter<"report"> | string | null
-    description?: StringNullableFilter<"report"> | string | null
-    userId?: StringFilter<"report"> | string
-    thumbnailUrl?: StringNullableFilter<"report"> | string | null
-    recordUrl?: StringNullableFilter<"report"> | string | null
-    expiryTimeInMinutes?: IntNullableFilter<"report"> | number | null
-    calculatedClass?: JsonNullableFilter<"report">
-    createdDate?: DateTimeFilter<"report"> | Date | string
-    updatedDate?: DateTimeNullableFilter<"report"> | Date | string | null
   }
 
   export type auditUpsertWithWhereUniqueWithoutUserInput = {
@@ -16145,21 +16106,63 @@ export namespace Prisma {
     authentication?: authenticationUncheckedUpdateManyWithoutUserNestedInput
   }
 
-  export type reportItemsCreateManyReportInput = {
+  export type reportCreateManyLiveInput = {
     id?: string
-    data?: string | null
+    title?: string | null
+    description?: string | null
+    userId: string
+    thumbnailUrl?: string | null
+    recordUrl?: string | null
+    expiryTimeInMinutes?: number | null
+    calculatedClass?: NullableJsonNullValueInput | InputJsonValue
     createdDate?: Date | string
     updatedDate?: Date | string | null
   }
 
-  export type liveCreateManyReportInput = {
+  export type reportUpdateWithoutLiveInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    recordUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    calculatedClass?: NullableJsonNullValueInput | InputJsonValue
+    createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: userUpdateOneRequiredWithoutReportNestedInput
+    reportItems?: reportItemsUpdateManyWithoutReportNestedInput
+  }
+
+  export type reportUncheckedUpdateWithoutLiveInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    recordUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    calculatedClass?: NullableJsonNullValueInput | InputJsonValue
+    createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    reportItems?: reportItemsUncheckedUpdateManyWithoutReportNestedInput
+  }
+
+  export type reportUncheckedUpdateManyWithoutLiveInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    recordUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
+    calculatedClass?: NullableJsonNullValueInput | InputJsonValue
+    createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type reportItemsCreateManyReportInput = {
     id?: string
-    isPredictionEnabled?: boolean
-    path: string
-    streamId: string
-    userId: string
-    expiryDate?: Date | string | null
-    expiryTimeInMinutes?: number | null
+    data?: string | null
     createdDate?: Date | string
     updatedDate?: Date | string | null
   }
@@ -16185,48 +16188,10 @@ export namespace Prisma {
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type liveUpdateWithoutReportInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
-    path?: StringFieldUpdateOperationsInput | string
-    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
-    createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    stream?: streamUpdateOneRequiredWithoutLiveNestedInput
-    user?: userUpdateOneRequiredWithoutLiveNestedInput
-  }
-
-  export type liveUncheckedUpdateWithoutReportInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
-    path?: StringFieldUpdateOperationsInput | string
-    streamId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
-    createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type liveUncheckedUpdateManyWithoutReportInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
-    path?: StringFieldUpdateOperationsInput | string
-    streamId?: StringFieldUpdateOperationsInput | string
-    userId?: StringFieldUpdateOperationsInput | string
-    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
-    createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
   export type liveCreateManyStreamInput = {
     id?: string
-    isPredictionEnabled?: boolean
     path: string
     userId: string
-    reportId?: string | null
     expiryDate?: Date | string | null
     expiryTimeInMinutes?: number | null
     createdDate?: Date | string
@@ -16235,34 +16200,30 @@ export namespace Prisma {
 
   export type liveUpdateWithoutStreamInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
     path?: StringFieldUpdateOperationsInput | string
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: userUpdateOneRequiredWithoutLiveNestedInput
-    report?: reportUpdateOneWithoutLiveNestedInput
+    report?: reportUpdateManyWithoutLiveNestedInput
   }
 
   export type liveUncheckedUpdateWithoutStreamInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
     path?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    reportId?: NullableStringFieldUpdateOperationsInput | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    report?: reportUncheckedUpdateManyWithoutLiveNestedInput
   }
 
   export type liveUncheckedUpdateManyWithoutStreamInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
     path?: StringFieldUpdateOperationsInput | string
     userId?: StringFieldUpdateOperationsInput | string
-    reportId?: NullableStringFieldUpdateOperationsInput | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16279,10 +16240,8 @@ export namespace Prisma {
 
   export type liveCreateManyUserInput = {
     id?: string
-    isPredictionEnabled?: boolean
     path: string
     streamId: string
-    reportId?: string | null
     expiryDate?: Date | string | null
     expiryTimeInMinutes?: number | null
     createdDate?: Date | string
@@ -16293,6 +16252,7 @@ export namespace Prisma {
     id?: string
     title?: string | null
     description?: string | null
+    liveId: string
     thumbnailUrl?: string | null
     recordUrl?: string | null
     expiryTimeInMinutes?: number | null
@@ -16359,34 +16319,30 @@ export namespace Prisma {
 
   export type liveUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
     path?: StringFieldUpdateOperationsInput | string
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     stream?: streamUpdateOneRequiredWithoutLiveNestedInput
-    report?: reportUpdateOneWithoutLiveNestedInput
+    report?: reportUpdateManyWithoutLiveNestedInput
   }
 
   export type liveUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
     path?: StringFieldUpdateOperationsInput | string
     streamId?: StringFieldUpdateOperationsInput | string
-    reportId?: NullableStringFieldUpdateOperationsInput | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    report?: reportUncheckedUpdateManyWithoutLiveNestedInput
   }
 
   export type liveUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
-    isPredictionEnabled?: BoolFieldUpdateOperationsInput | boolean
     path?: StringFieldUpdateOperationsInput | string
     streamId?: StringFieldUpdateOperationsInput | string
-    reportId?: NullableStringFieldUpdateOperationsInput | string | null
     expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16403,14 +16359,15 @@ export namespace Prisma {
     calculatedClass?: NullableJsonNullValueInput | InputJsonValue
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    live?: liveUpdateOneRequiredWithoutReportNestedInput
     reportItems?: reportItemsUpdateManyWithoutReportNestedInput
-    live?: liveUpdateManyWithoutReportNestedInput
   }
 
   export type reportUncheckedUpdateWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    liveId?: StringFieldUpdateOperationsInput | string
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     recordUrl?: NullableStringFieldUpdateOperationsInput | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null
@@ -16418,13 +16375,13 @@ export namespace Prisma {
     createdDate?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     reportItems?: reportItemsUncheckedUpdateManyWithoutReportNestedInput
-    live?: liveUncheckedUpdateManyWithoutReportNestedInput
   }
 
   export type reportUncheckedUpdateManyWithoutUserInput = {
     id?: StringFieldUpdateOperationsInput | string
     title?: NullableStringFieldUpdateOperationsInput | string | null
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    liveId?: StringFieldUpdateOperationsInput | string
     thumbnailUrl?: NullableStringFieldUpdateOperationsInput | string | null
     recordUrl?: NullableStringFieldUpdateOperationsInput | string | null
     expiryTimeInMinutes?: NullableIntFieldUpdateOperationsInput | number | null

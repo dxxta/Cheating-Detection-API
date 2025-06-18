@@ -1,23 +1,25 @@
 model live {
   id                  String    @id @default(uuid())
-  isPredictionEnabled Boolean   @default(false) // unused
   path                String
   streamId            String
   stream              stream    @relation(fields: [streamId], references: [id])
   userId              String
   user                user      @relation(fields: [userId], references: [id])
-  reportId            String?
-  report              report?   @relation(fields: [reportId], references: [id])
+  // reportId            String?
+  // report              report?   @relation(fields: [reportId], references: [id])
   expiryDate          DateTime?
   expiryTimeInMinutes Int?
   createdDate         DateTime  @default(now())
   updatedDate         DateTime?
+  report              report[]
 }
 
 model report {
   id                  String        @id @default(uuid())
   title               String?
   description         String?
+  liveId              String
+  live                live          @relation(fields: [liveId], references: [id])
   userId              String
   user                user          @relation(fields: [userId], references: [id])
   thumbnailUrl        String?
@@ -27,7 +29,6 @@ model report {
   createdDate         DateTime      @default(now())
   updatedDate         DateTime?
   reportItems         reportItems[]
-  live                live[]
 }
 
 model reportItems {

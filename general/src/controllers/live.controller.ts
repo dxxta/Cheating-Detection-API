@@ -20,14 +20,12 @@ export const generateLive = async (
   ctx: Prisma.TransactionClient
 ) => {
   try {
-    console.log('generateLive', user, body)
     const minutes = Number(body?.expiryTimeInMinutes ?? 5)
     const liveId = body.id ?? randomUUID()
     const live = await ctx.live.create({
       data: {
         id: liveId,
-        reportId: body.reportId,
-        isPredictionEnabled: body.isPredictionEnabled ?? false,
+        // reportId: body.reportId,
         path: `${process.env.WATCH_SERVICE_LIVE_ENDPOINT}/${liveId}`,
         streamId: body.streamId,
         userId: user.id,
@@ -52,8 +50,6 @@ export const generateLive = async (
     await redis.SET(live.id, liveStringify)
     if (body.reportId) {
       await redis.publish(process.env.REDIS_CHANNEL, liveId)
-      // live.isPredictionEnabled &&
-      //   (await redis.publish(process.env.PREDICTION_CHANNEL, live.id));
     }
     return live
   } catch (error) {
@@ -72,7 +68,6 @@ export const createLive = async (
     await isValidSchema(
       Joi.object({
         streamId: Joi.string().uuid().required(),
-        isPredictionEnabled: Joi.boolean().optional(),
         expiryTimeInMinutes: Joi.number().optional()
       }).required(),
       req.body

@@ -122,11 +122,9 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.LiveScalarFieldEnum = {
   id: 'id',
-  isPredictionEnabled: 'isPredictionEnabled',
   path: 'path',
   streamId: 'streamId',
   userId: 'userId',
-  reportId: 'reportId',
   expiryDate: 'expiryDate',
   expiryTimeInMinutes: 'expiryTimeInMinutes',
   createdDate: 'createdDate',
@@ -137,6 +135,7 @@ exports.Prisma.ReportScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
+  liveId: 'liveId',
   userId: 'userId',
   thumbnailUrl: 'thumbnailUrl',
   recordUrl: 'recordUrl',

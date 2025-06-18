@@ -2,6 +2,8 @@ model report {
     id                  String        @id @default(uuid())
     title               String?
     description         String?
+    liveId              String
+    live                live          @relation(fields: [liveId], references: [id])
     userId              String
     user                user          @relation(fields: [userId], references: [id])
     thumbnailUrl        String?
@@ -11,7 +13,6 @@ model report {
     createdDate         DateTime      @default(now())
     updatedDate         DateTime?
     reportItems         reportItems[]
-    live                live[]
 }
 
 model reportItems {
