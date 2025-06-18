@@ -42,7 +42,6 @@ declare global {
     stream?: streamDataType
     userId: string
     user?: userDataType
-    reportId: string
     report?: any
     expiryDate: string
     expiryTimeInMinutes: number

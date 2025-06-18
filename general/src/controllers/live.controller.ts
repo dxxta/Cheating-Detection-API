@@ -20,23 +20,32 @@ export const generateLive = async (
   ctx: Prisma.TransactionClient
 ) => {
   try {
-    const minutes = Number(body?.expiryTimeInMinutes ?? 5)
-    const liveId = body.id ?? randomUUID()
-    const live = await ctx.live.create({
-      data: {
-        id: liveId,
-        // reportId: body.reportId,
-        path: `${process.env.WATCH_SERVICE_LIVE_ENDPOINT}/${liveId}`,
-        streamId: body.streamId,
-        userId: user.id,
-        expiryTimeInMinutes: Math.floor(Date.now() / 1000) + minutes * 60 // s
+    const foundLive = await database.live.findFirst({
+      where: {
+        id: body.id
       },
       include: {
         user: true,
-        report: true,
         stream: true
       }
     })
+    const minutes = Number(body?.expiryTimeInMinutes ?? 5)
+    const liveId = body.id ?? randomUUID()
+    const live =
+      foundLive ??
+      (await ctx.live.create({
+        data: {
+          id: liveId,
+          path: `${process.env.WATCH_SERVICE_LIVE_ENDPOINT}/${liveId}`,
+          streamId: body.streamId,
+          userId: user.id,
+          expiryTimeInMinutes: Math.floor(Date.now() / 1000) + minutes * 60 // s
+        },
+        include: {
+          user: true,
+          stream: true
+        }
+      }))
     await ctx.audit.create({
       data: {
         entityId: live.id,
@@ -48,9 +57,6 @@ export const generateLive = async (
     // save and sent to redis
     const liveStringify = JSON.stringify(live)
     await redis.SET(live.id, liveStringify)
-    if (body.reportId) {
-      await redis.publish(process.env.REDIS_CHANNEL, liveId)
-    }
     return live
   } catch (error) {
     throw new InternalServerError((error as Error).message)

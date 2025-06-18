@@ -452,15 +452,18 @@ async def liveStream(request: Request, liveId: str):
 
 
 async def recordLiveStream(id: str):
-    print(f"logs - recordLiveStream running for {id}")
+    print(f"logs - recordLiveStream running for report id {id}")
     try:
-        data = await getRedisJson(rd=redis_client, key=id)
-        if data is None:
+        reportData = await getRedisJson(rd=redis_client, key=id)
+        if reportData is None:
+            raise Exception("Report data is not available")
+        liveData = await getRedisJson(rd=redis_client, key=reportData["liveId"])
+        if liveData is None:
             raise Exception("Live data is not available")
-        user_data = data["user"]
-        report_id = data["report"]["id"]
-        rtsp_url = data["stream"]["url"]
-        expiry_ts = data["report"]["expiryTimeInMinutes"]
+        user_data = liveData["user"]
+        report_id = reportData["id"]
+        rtsp_url = liveData["stream"]["url"]
+        expiry_ts = reportData["expiryTimeInMinutes"]
         user_data_encoded = base64.b64encode(json.dumps(user_data).encode()).decode()
         request_header = {
             "x-from-internal": "true",  # headers must be strings
@@ -551,7 +554,7 @@ async def recordLiveStream(id: str):
                     "entityId": report_id,
                     "entityName": "Report",
                     "title": f"Recording is finished",
-                    "caption": data["report"]["title"] or None,
+                    "caption": reportData["title"] or None,
                     "description": f"You can see it now!",
                 },
                 headers=request_header,
@@ -566,7 +569,7 @@ async def recordLiveStream(id: str):
                     "entityId": report_id,
                     "entityName": "Report",
                     "title": f"Recording is failed",
-                    "caption": data["report"]["title"] or None,
+                    "caption": reportData["title"] or None,
                     "description": f"Something is wrong with the streaming",
                 },
                 headers=request_header,
@@ -589,11 +592,11 @@ async def consumeIncomingRtspLive():
             continue
         data = message["data"]
         if isinstance(data, bytes):
-            liveId = data.decode("utf-8")
+            reportId = data.decode("utf-8")
         else:
-            liveId = data
+            reportId = data
         # spawn a new task for each message immediately
-        task = asyncio.create_task(recordLiveStream(liveId))
+        task = asyncio.create_task(recordLiveStream(reportId))
         running.add(task)
         task.add_done_callback(lambda t: running.discard(t))
     # if pubsub ever ends, wait for all

@@ -84,16 +84,7 @@ export const createReport = async (
         id: Joi.string().uuid().optional(),
         title: Joi.string().required(),
         description: Joi.string().optional(),
-        // liveId: Joi.string().uuid().required(),
-        // items: Joi.array()
-        //   .items(
-        //     Joi.object({
-        //       id: Joi.string().uuid().optional(),
-        //       data: Joi.string().required(),
-        //     }).required()
-        //   )
-        //   .optional(),
-        // live body
+        liveId: Joi.string().uuid().optional(),
         streamId: Joi.string().uuid().required(),
         expiryTimeInMinutes: Joi.number().required()
       }).required(),
@@ -101,6 +92,7 @@ export const createReport = async (
     )
     if (
       req.body.streamId &&
+      !req.body.liveId &&
       !(
         (await database.stream.count({
           where: {
@@ -111,89 +103,58 @@ export const createReport = async (
     ) {
       throw new BadRequestError('stream not found')
     }
-    // if (
-    //   req.body.liveId &&
-    //   !(
-    //     (await database.live.count({
-    //       where: {
-    //         id: req.body.liveId,
-    //       },
-    //     })) > 0
-    //   )
-    // ) {
-    //   throw new BadRequestError("live not found");
-    // }
+    const foundLive =
+      (req.body.liveId &&
+        (await database.live.findFirst({
+          where: {
+            id: req.body.liveId,
+            userId: req.user?.id
+          }
+        }))) ||
+      null
+    if (!foundLive) {
+      throw new BadRequestError('live not found')
+    }
     const createReport = await database.$transaction(async (ctx) => {
       // let items = req.body.items;
-      const liveBody = {
-        id: randomUUID(), //req.body.liveId,
-        streamId: req.body.streamId
-      }
+      const liveResponse = await generateLive(
+        foundLive
+          ? foundLive
+          : ({
+              id: randomUUID(),
+              streamId: req.body.streamId
+            } as any),
+        req.user!,
+        ctx
+      )
       delete req.body.streamId
       delete req.body.items
-      const report = await ctx.report.create({
+      const reportResponse = await ctx.report.create({
         data: {
           ...req.body,
+          liveId: liveResponse.id,
           userId: req.user?.id,
           expiryTimeInMinutes:
             Math.floor(Date.now() / 1000) +
             (req.body?.expiryTimeInMinutes ?? 5) * 60
+        },
+        include: {
+          live: true,
+          user: true
         }
       })
       await ctx.audit.create({
         data: {
-          entityId: report.id,
+          entityId: reportResponse.id,
           entityName: 'report',
-          fieldName: Object.keys(report).toString(),
-          fieldValue: JSON.stringify(report)
+          fieldName: Object.keys(reportResponse).toString(),
+          fieldValue: JSON.stringify(reportResponse)
         }
       })
-      // if (Array.isArray(items) && items?.length > 0) {
-      //   items = items.map((item) => ({
-      //     ...item,
-      //     id: item?.id ?? randomUUID(),
-      //     reportId: report.id,
-      //   }));
-      //   await ctx.reportItems.createMany({
-      //     data: items,
-      //   });
-      //   items = items.map(
-      //     (
-      //       item: Awaited<ReturnType<typeof ctx.reportItems.findMany>>[number]
-      //     ) => item.id
-      //   );
-      //   items = await ctx.reportItems.findMany({
-      //     where: {
-      //       id: {
-      //         in: items,
-      //       },
-      //     },
-      //   });
-      //   await ctx.audit.createMany({
-      //     data: items.map(
-      //       (
-      //         item: Awaited<ReturnType<typeof ctx.reportItems.findMany>>[number]
-      //       ) => ({
-      //         entityId: item.id,
-      //         entityName: "reportItems",
-      //         fieldName: Object.keys(item).toString(),
-      //         fieldValue: JSON.stringify(item),
-      //       })
-      //     ),
-      //   });
-      //   return {
-      //     ...report,
-      //     items,
-      //   };
-      // }
-      return await generateLive(
-        {
-          ...liveBody,
-          reportId: report.id
-        } as any,
-        req.user!,
-        ctx
-      )
+      const liveStringify = JSON.stringify(reportResponse)
+      await redis.SET(reportResponse.id, liveStringify)
+      await redis.publish(process.env.REDIS_CHANNEL, reportResponse.id)
+      return reportResponse
     })
     res.status(StatusCodes.CREATED).json({
       success: true,
