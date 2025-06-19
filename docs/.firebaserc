@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "dntaa-sandbox"
+  },
+  "targets": {
+    "dntaa-sandbox": {
+      "hosting": {
+        "production": [
+          "docs-bye-cheating"
+        ]
+      }
+    }
+  }
+}

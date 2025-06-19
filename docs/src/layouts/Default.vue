@@ -164,7 +164,15 @@ onMounted(() => {
               icon-placement="right"
               >About</NButton
             >
-            <NButton :render-icon="utils?.renderIcon(IconLink)" @click="() => {}">Dev</NButton>
+            <NButton
+              :render-icon="utils?.renderIcon(IconLink)"
+              @click="
+                () => {
+                  utils?.appWindow.open('https://linkedin.com/in/dinta-syaifuddin', '_blank')
+                }
+              "
+              >Dev</NButton
+            >
           </NSpace>
         </NFlex>
       </NCard>

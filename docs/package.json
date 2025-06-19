@@ -8,6 +8,7 @@
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview --mode production",
     "build-only": "vite build --mode production",
+    "firebase": "pnpm run build-only && firebase deploy --only hosting:production",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
     "format": "prettier --write src/"
