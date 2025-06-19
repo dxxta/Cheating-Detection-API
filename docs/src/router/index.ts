@@ -19,6 +19,14 @@ const router = createRouter({
       },
     },
     {
+      path: '/about',
+      name: 'about',
+      component: async () => await import('../pages/AboutPage.vue'),
+      meta: {
+        title: 'About The Research',
+      },
+    },
+    {
       path: '/:pathMatch(.*)*',
       component: async () => await import('@/pages/Notfound.vue'),
       meta: {

@@ -239,7 +239,7 @@ onMounted(() => {
         >Byecheating API is an integrated system cheating detection through RTSP protocol. It
         enables live streaming analysis, frame-level predictions, and storage of activity reports.
         This API is part of a system built to track, monitor, and record suspicious behavior during
-        remote sessions.<br /><br />On this page, you can try to walkthrough the features<br
+        remote sessions.<br /><br />On this page, you can walkthrough the features<br
       /></NText>
     </NBlockquote>
     <NDivider><NText>Authentication Story</NText></NDivider>

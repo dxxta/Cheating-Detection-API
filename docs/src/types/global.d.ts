@@ -43,7 +43,6 @@ declare global {
     userId: string
     user?: userDataType
     report?: any
-    expiryDate: string
     expiryTimeInMinutes: number
     createdDate: string
     updatedDate: string

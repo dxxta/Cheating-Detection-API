@@ -11,6 +11,8 @@ Integrated API system for cheating detection using CCTV, rtsp protocol and YOLOv
 - [API record result](media/record.mp4)
 - [API Demo](https://youtu.be/b1nFwKaM9lg)
 - [Demo](https://youtu.be/Jt4vekrCvrE)
+- [Paper](media/paper.pdf)
+- [Poster](media/poster.png)
 
 ## Requirements
 

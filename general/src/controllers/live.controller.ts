@@ -149,7 +149,7 @@ export const updateLive = async (
         data: expiryTimeInMinutes
           ? {
               ...req.body,
-              expiryDate: expiryTimeInMinutes
+              expiryTimeInMinutes
             }
           : req.body
       })
@@ -186,13 +186,13 @@ export const getLive = async (
         id: Joi.string().uuid().optional(),
         userId: Joi.string().uuid().optional(),
         streamId: Joi.string().uuid().optional(),
-        path: urlValidation.optional(),
-        expiryDate: Joi.object({
-          gt: Joi.date().optional(),
-          gte: Joi.date().optional(),
-          lt: Joi.date().optional(),
-          lte: Joi.date().optional()
-        }).optional()
+        path: urlValidation.optional()
+        // expiryDate: Joi.object({
+        //   gt: Joi.date().optional(),
+        //   gte: Joi.date().optional(),
+        //   lt: Joi.date().optional(),
+        //   lte: Joi.date().optional()
+        // }).optional()
       }).prefs({ convert: true }),
       req.populatedQuery
     )
@@ -207,11 +207,11 @@ export const getLive = async (
         streamId: req.populatedQuery?.streamId
       })
     }
-    if (req.populatedQuery?.expiryDate) {
-      orQuery.push({
-        expiryDate: req.populatedQuery?.expiryDate
-      })
-    }
+    // if (req.populatedQuery?.expiryDate) {
+    //   orQuery.push({
+    //     expiryDate: req.populatedQuery?.expiryDate
+    //   })
+    // }
     if (req.populatedQuery?.path) {
       orQuery.push({
         path: {

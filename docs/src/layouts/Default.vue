@@ -9,6 +9,7 @@ import {
   IconCode,
   IconMail,
   IconLink,
+  IconQuestionMark,
 } from '@tabler/icons-vue'
 import {
   NButton,
@@ -20,6 +21,7 @@ import {
   NSpace,
   NText,
   NAlert,
+  useMessage,
 } from 'naive-ui'
 import { getCurrentInstance, h, onMounted, reactive, watch } from 'vue'
 import { useThemeStore } from '@/stores/theme.store'
@@ -27,10 +29,13 @@ import { useRouter } from 'vue-router'
 import { storeToRefs } from 'pinia'
 import Container from '@/shared/ui/Container.vue'
 import { useBreakpoint } from '@/composables/breakpoint'
+import { useUserStore } from '@/stores/user.store'
 
 const router = useRouter()
 const breakpoint = useBreakpoint()
 const themeStore = useThemeStore()
+const userStore = useUserStore()
+const message = useMessage()
 const { toggleTheme } = storeToRefs(themeStore)
 const utils = getCurrentInstance()?.proxy?.$utils
 const data: {
@@ -86,6 +91,31 @@ watch(
   },
   { immediate: true },
 )
+
+onMounted(() => {
+  userStore.pingServerAction().finally(() => {
+    message.loading(
+      () =>
+        h(NFlex, { align: 'center' }, [
+          h(NText, {}, { default: () => 'Failed to connect, server unreachable.' }),
+          h(
+            NButton,
+            {
+              size: 'small',
+              type: 'primary',
+              onClick: () => {
+                window.location.reload()
+              },
+            },
+            { default: () => 'Try again' },
+          ),
+        ]),
+      {
+        duration: 0,
+      },
+    )
+  })
+})
 </script>
 <template>
   <Container>
@@ -129,10 +159,10 @@ watch(
               >API Docs</NButton
             >
             <NButton
-              @click="() => router.push('/survey')"
-              type="warning"
-              :render-icon="utils?.renderIcon(IconPaperclip)"
-              >Survey</NButton
+              @click="() => router.push('/about')"
+              :render-icon="utils?.renderIcon(IconQuestionMark)"
+              icon-placement="right"
+              >About</NButton
             >
             <NButton :render-icon="utils?.renderIcon(IconLink)" @click="() => {}">Dev</NButton>
           </NSpace>
@@ -141,8 +171,8 @@ watch(
       <br />
       <NAlert type="warning">
         <NText
-          >Website for study purpose, so please make sure you only put dummy data. Dont share any
-          sensitive information within the website!
+          >This site is intended for academic research, so please be certain that you do not
+          disclose any sensitive informations on it!
         </NText>
       </NAlert>
       <br />
