@@ -103,16 +103,13 @@ export const createReport = async (
     ) {
       throw new BadRequestError('stream not found')
     }
-    const foundLive =
-      (req.body.liveId &&
-        (await database.live.findFirst({
-          where: {
-            id: req.body.liveId,
-            userId: req.user?.id
-          }
-        }))) ||
-      null
-    if (!foundLive) {
+    const foundLive = await database.live.findFirst({
+      where: {
+        id: req.body.liveId,
+        userId: req.user?.id
+      }
+    })
+    if (!foundLive && !req.body.streamId) {
       throw new BadRequestError('live not found')
     }
     const createReport = await database.$transaction(async (ctx) => {
